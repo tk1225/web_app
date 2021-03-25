@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+    <!-- plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    
+
+    <!-- FontAwesome5 -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <!-- FontAwesome5 -->
+
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    
+    <title>α</title>
+</head>
+<body>
+    <header>ナビバー</header>
+
+    <main>
+    <div class="search_area">
+        
+            <div class="search1">
+                <input type="text" name="ticker" placeholder="AAPL" id="search" />
+                <button type="submit" id="search_btn">検索</button>
+                
+            </div>
+            <i class="far fa-plus-square"></i>
+  
+        
+       
+    </div>
+
+
+    <div class="title_summary">
+        <div class="summary_left_box">
+            
+
+            <div class="stock_price">
+                <table id="company_detail">
+                    <tr>
+                      <th>企業名</th>
+                      <td>テスラ</td>
+                    </tr>
+                    <tr>
+                      <th>前日株価</th>
+                      <td>1940$</td>
+                    </tr>
+                    <tr>
+                      <th>配当利回り</th>
+                      <td>5%</td>
+                    </tr>
+                    <tr>
+                      <th>業界</th>
+                      <td>自動車</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="stock_score_rader_wrapper" >
+            <div id="chart_container" style="position: relative;"  >
+            <canvas id="chart" width="100" height="100"></canvas>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="card card-skin">
+        <div class="card__textbox">
+          <div class="card__titletext">
+            指標一覧
+          </div>
+          <div id="financial_summary">
+            <!-- 指標を表示するカルーセル -->
+          </div>
+        </div>
+    </div>
+ 
+
+    <div class="main_graph_area">
+        <div id="main_graph">
+            
+        </div>
+
+        <div class="graph_data">
+            グラフにインポートされているデータとグラフの種類（棒グラフ/折れ線/）がでる
+        </div>
+
+        <div class="data_import">
+
+            全データが参照できる５つのセレクトボタン
+            PL/BS/財務指標/株価/金利
+        </div>
+    </div>
+    </main>
+
+    <footer>個別株マクロ分析ページポートフォリオページ</footer>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- JQuery -->
+
+    <!-- jQuery UI -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <!-- Flickity_JQueryの後 -->
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <!-- Flickity --> 
+    <script src="../static/js/index.js"></script>
+    <!-- Plotly --> 
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  
+</body>
+</html>
+

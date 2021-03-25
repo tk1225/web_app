@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- JQuery -->
+    
+    <!-- JQueryUI -->
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <!-- JQueryUIスマホ対応 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" integrity="sha512-0bEtK0USNd96MnO4XhH8jhv3nyRF0eK87pJke6pkYf3cM0uDIhNJy9ltuzqgypoIFXw3JSuiy04tVk4AjpZdZw==" crossorigin="anonymous"></script>
+    <style>
+        .drop{border-radius: 8px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,.2);
+            width: 100%;
+            height: 80px;
+            margin: 100px;
+        }
+        .list_columns{height: 80px;
+            width: 80px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.2);
+        display: flex;}
+        .list_index{height: 80px;
+            width: 80px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.2);
+        display: flex;}
+
+        
+
+    </style>
+    
+</head>
+<body>
+   
+
+    <div id="columns"class="drop" >   
+    </div>
+
+    <div id="index" class="drop">       
+    </div>
+
+   
+
+    <script>
+        //リストで列名と行名を保持
+
+        let list_columns=["first_column","second_column"];
+        let list_index=["first_index"];
+
+        const makehtml=()=>{
+            let colums_html=""
+            for(i=0; i<list_columns.length; i++){
+                const tmp=`<div class="list_columns" value={state:columns,key:${i}}>${list_columns[i]}</div>`
+                colums_html+=tmp;
+            }
+    
+            let index_html=""
+            for(i=0; i<list_index.length; i++){
+                const tmp=`<div class="list_index" value={state:index,key:${i}>${list_index[i]}</div>`
+                index_html+=tmp;
+            }
+            $("#columns").html(colums_html)
+            $("#index").html(index_html)
+        }
+        
+        makehtml();
+        //ドロップ後にリストを書き換え、場所の情報も取得しリストの位置を考えて再描画
+
+        $( function() {
+            $('.list_columns').draggable({
+                snap: ".drop", /* ターゲットにスナップする */
+                snapMode: "inner",   /* 内側にスナップする */
+                revert: "invalid"    /* Droppableな要素以外にDragされた場合、元の位置に戻る */
+            });
+            $('.list_index').draggable({
+                snap: ".drop", /* ターゲットにスナップする */
+                snapMode: "inner",   /* 内側にスナップする */
+                revert: "invalid"    /* Droppableな要素以外にDragされた場合、元の位置に戻る */
+            });
+            
+            $( ".drop" ).droppable({
+                drop: function( event, ui ) {
+
+                    //ドロップ先のIDを取得(columns or index)
+                    var data = event.target.id;
+                    console.log(data);
+                    console.log(event)
+                    const drop_value = ui.draggable.attr("value");
+                    
+                    
+                    
+
+
+
+                }
+
+          
+                   
+                  
+                  
+            });
+          } );
+
+
+
+        
+    </script>
+
+</body>
+
+</html>
