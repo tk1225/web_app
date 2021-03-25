@@ -55,17 +55,21 @@ def api_score():
     #returnにリストを渡すとエラーとなる。
     return data[0] 
 
-@app.route("/search", methods=["GET", "POST"])
-def search():
+@app.route("/stock_price", methods=["GET", "POST"])
+def stock_price():
     #ここで読み込まないと動かない？
     import api
-
-   
-
-    data=api.search()
+    print(request.json)
+    input_data=request.json
+    ticker=input_data["ticker"]
+    print(ticker)
+    data=api.stock_price(ticker)
     print(data)
     #returnにリストを渡すとエラーとなる。
-    return data[0] 
+  
+    return data
+
+  
     
 
 

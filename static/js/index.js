@@ -182,11 +182,13 @@ const Serch_data=()=>{
     //axios.postをリストで渡す
     axios.post(`/api`,{"ticker": ticker}),
     axios.post(`/api_ratio`,{"ticker": ticker}),
-    axios.post(`/api_score`,{"ticker": ticker})
+    axios.post(`/api_score`,{"ticker": ticker}),
+    axios.post(`/stock_price`,{"ticker": ticker})
     ])
-    .then(axios.spread((response1, response2,response3) => {
+    .then(axios.spread((response1, response2,response3,response4) => {
      
-      console.log('data1', response1, 'data2', response2,'data3', response3)
+      console.log('data1', response1, 'data2', response2,
+      'data3', response3,'data4', response4)
         //企業概要をカラにする
       $("#company_detail").empty();
       const h=` <tr>
@@ -214,15 +216,24 @@ const Serch_data=()=>{
       let PBRScore=response3.data["ratingDetailsPBScore"]
       let PERScore=response3.data["ratingDetailsPEScore"]
       let ROAScore=response3.data["ratingDetailsROAScore"]
-      let ROEScore=response3.data["ratingDetailsROEScore"]
-
-      
+      let ROEScore=response3.data["ratingDetailsROEScore"]    
       make_rader_charts(DCFScore,PBRScore,PERScore,ROAScore,ROEScore)
 
       console.log(response2.data)
       make_company_stats(response2.data)
      
-      
+      console.log(response4.data["historical"][0]["adjClose"])
+      console.log(response4.data["historical"][0]["date"])
+      let x=[]
+      let y=[]
+
+      for(let i = 0; i< response4.data["historical"].length ; i++){
+        x.push(response4.data["historical"][i]["date"])
+        y.push(response4.data["historical"][i]["adjClose"])
+    }
+    make_charts(x,y)
+
+
     }));
 }
 
@@ -1183,22 +1194,18 @@ $(function() {
 
 });
 
+const make_charts=(x_data,y_data)=>{
 // 株価グラフ
 var trace1 = {
-  x: [1, 2, 3, 4],
-  y: [10, 15, 13, 17],
+  x: x_data,
+  y: y_data,
   type: 'scatter'
 };
-
-var trace2 = {
-  x: [1, 2, 3, 4],
-  y: [16, 5, 11, 9],
-  type: 'scatter'
-};
-
-var data = [trace1, trace2];
+var data = [trace1];
 
 Plotly.newPlot('main_graph', data);
+}
+
 
 
 
